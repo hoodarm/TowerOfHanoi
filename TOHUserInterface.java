@@ -5,17 +5,17 @@ import java.awt.image.*;
 import java.awt.event.*;
 import java.awt.font.*;
 
-public class TowerOfHanoiApp extends JFrame implements KeyListener, MouseListener
+public class TOHUserInterface extends JFrame implements KeyListener, MouseListener
 {
   public static void main (String[] args) throws AssertionError
   {
-    application = new TowerOfHanoiApp ();
+    application = new TOHUserInterface ();
     application.start ();
   }
 
-  public TowerOfHanoiApp ()
+  public TOHUserInterface ()
   {
-    super (TowerOfHanoiApp.getDefaultGraphicsConf ());
+    super (TOHUserInterface.getDefaultGraphicsConf ());
   }
     
   public static int getDisplayRefreshRate ()
@@ -111,7 +111,7 @@ public class TowerOfHanoiApp extends JFrame implements KeyListener, MouseListene
     
   public static final int XSIZE = 1024;
   public static final int YSIZE = 768;
-  public static TowerOfHanoiApp application;
+  public static TOHUserInterface application;
   public static Canvas canvas;
   public static BufferStrategy bufferStrategy;
   private static Timer applicationUpdateTimer;
@@ -184,7 +184,6 @@ public class TowerOfHanoiApp extends JFrame implements KeyListener, MouseListene
   
   public void decideAndDo ()
   {
-    System.out.println (getDisplayRefreshRate ());
   }
   
   public void drawApplication ()
