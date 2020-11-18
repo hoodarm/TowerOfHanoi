@@ -10,7 +10,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   public TOHUserInterface ()
   {
     super (TOHUserInterface.getDefaultGraphicsConf ());
-    application = this;
+    ui = this;
   }
     
   public static int getDisplayRefreshRate ()
@@ -41,22 +41,22 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   private static void initializeGUIAndTimer ()
   {
     // basic elements and settings
-    application.setIgnoreRepaint (true);
-    application.setResizable (false);
+    ui.setIgnoreRepaint (true);
+    ui.setResizable (false);
     
-    application.canvas = new Canvas ();
+    ui.canvas = new Canvas ();
     canvas.setIgnoreRepaint (true);
-    Container content = application.getContentPane ();
-    application.canvas.setPreferredSize (new Dimension (XSIZE, YSIZE));
+    Container content = ui.getContentPane ();
+    ui.canvas.setPreferredSize (new Dimension (XSIZE, YSIZE));
     content.add (canvas);
-    application.pack ();
-    application.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-    application.addWindowListener (new WindowAdapter ()
+    ui.pack ();
+    ui.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+    ui.addWindowListener (new WindowAdapter ()
       {
         public void windowOpened(WindowEvent e)
         {
-          application.initializeApplication ();
-          application.applicationUpdateTimer.start ();
+          ui.initializeApplication ();
+          ui.applicationUpdateTimer.start ();
         } 
         public void windowClosing(WindowEvent e) {}
         public void windowClosed(WindowEvent e) {}
@@ -69,12 +69,12 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         public void windowLostFocus(WindowEvent e) {}
       });
         
-    application.validate ();
-    application.canvas.createBufferStrategy (3);
-    application.bufferStrategy = application.canvas.getBufferStrategy ();
+    ui.validate ();
+    ui.canvas.createBufferStrategy (3);
+    ui.bufferStrategy = ui.canvas.getBufferStrategy ();
     
     // exit if window closed
-    application.addWindowListener(new WindowAdapter()
+    ui.addWindowListener(new WindowAdapter()
       {
         public void windowClosing(WindowEvent e)
         {
@@ -85,23 +85,23 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
 
     // get ready for key and mouse input and make window visible
     canvas.setFocusable (true);
-    canvas.addKeyListener (application);
+    canvas.addKeyListener (ui);
     canvas.requestFocus ();
-    canvas.addMouseListener (application);
-    application.setVisible (true);
+    canvas.addMouseListener (ui);
+    ui.setVisible (true);
 
     // game update timer
     ActionListener updateTimerListener = new ActionListener ()
       {
         public void actionPerformed (ActionEvent e)
         {
-          application.updateApplication ();
+          ui.updateApplication ();
         }
       };
-    application.applicationUpdateTimer = new Timer (application.updateIntervalMs,
+    ui.applicationUpdateTimer = new Timer (ui.updateIntervalMs,
                                                     updateTimerListener);
-    application.applicationUpdateTimer.setLogTimers (false);
-    application.applicationUpdateTimer.setCoalesce (true);
+    ui.applicationUpdateTimer.setLogTimers (false);
+    ui.applicationUpdateTimer.setCoalesce (true);
   }
     
   public static final int XSIZE = 1024;
@@ -109,7 +109,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   public static Canvas canvas;
   public static BufferStrategy bufferStrategy;
   private static Timer applicationUpdateTimer;
-  private static TOHUserInterface application;
+  private static TOHUserInterface ui;
   
   public final static int updateIntervalMs = 500;
   protected Graphics2D graphics = null;

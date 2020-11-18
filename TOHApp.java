@@ -2,9 +2,9 @@ public class TOHApp
 {
   public static void main (String[] args) 
   {
-    application = new TOHUserInterface ();
-    application.start ();
+    ui = new TOHUserInterface ();
+    ui.start ();
   }
 
-  public static TOHUserInterface application;
+  public static TOHUserInterface ui;
 }
