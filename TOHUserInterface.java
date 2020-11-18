@@ -7,15 +7,10 @@ import java.awt.font.*;
 
 public class TOHUserInterface extends JFrame implements KeyListener, MouseListener
 {
-  public static void main (String[] args) throws AssertionError
-  {
-    application = new TOHUserInterface ();
-    application.start ();
-  }
-
   public TOHUserInterface ()
   {
     super (TOHUserInterface.getDefaultGraphicsConf ());
+    application = this;
   }
     
   public static int getDisplayRefreshRate ()
@@ -111,11 +106,11 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     
   public static final int XSIZE = 1024;
   public static final int YSIZE = 768;
-  public static TOHUserInterface application;
   public static Canvas canvas;
   public static BufferStrategy bufferStrategy;
   private static Timer applicationUpdateTimer;
-
+  private static TOHUserInterface application;
+  
   public final static int updateIntervalMs = 500;
   protected Graphics2D graphics = null;
   private boolean useHardwareAcceleratedImages = false;
