@@ -1,6 +1,8 @@
 import java.util.Stack;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Queue;
+import java.util.LinkedList;
 
 public class TowerOfHanoi
 {
@@ -12,6 +14,8 @@ public class TowerOfHanoi
     
     for (int i = n; i >= 1; i--)
       towers.get (Peg.A).push (i);
+    
+    moves = new LinkedList <> ();
   }
 
   public String toString ()
@@ -24,10 +28,27 @@ public class TowerOfHanoi
       
   }
   
+  public void move (Peg from, Peg to)
+  {
+    moves.add (new Move (from, to));
+  }
+    
   private Map<Peg,Stack<Integer>> towers;
+  private Queue<Move> moves;
 }
 
 enum Peg
 {
   A, B, C;
+}
+
+class Move
+{
+  public Move (Peg from, Peg to)
+  {
+    this.from = from;
+    this.to = to;
+  }
+
+  Peg from, to;
 }
