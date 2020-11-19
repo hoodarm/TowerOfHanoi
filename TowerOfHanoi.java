@@ -55,7 +55,7 @@ public class TowerOfHanoi
   {
     StringBuffer strBuf = new StringBuffer ();
     for (Peg peg : Peg.values ())
-      strBuf.append (peg + ": " + towers.get (peg) + "\n");
+      strBuf.append (peg + ": " + towers.get (peg) + " \n");
 
     return strBuf.toString ();
       
@@ -69,17 +69,6 @@ public class TowerOfHanoi
 enum Peg
 {
   A, B, C;
-}
-
-class Move
-{
-  public Move (Peg from, Peg to)
-  {
-    this.from = from;
-    this.to = to;
-  }
-
-  Peg from, to;
 }
 
 class IllegalTowerOfHanoiMoveException extends Exception

@@ -13,6 +13,7 @@ public class TOHApp
 
     // code to be written to replace this feeble attempt
     toh.move (from, intermediate);
+    toh.move (from, to);
   }
   
   public static void main (String[] args) 
@@ -28,7 +29,6 @@ public class TOHApp
       System.out.println ("illegal move: " + e);
     }
     
-    System.out.println (toh);
     ui = new TOHUserInterface (toh);
     ui.start ();
   }

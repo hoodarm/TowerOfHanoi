@@ -12,6 +12,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     super (TOHUserInterface.getDefaultGraphicsConf ());
     ui = this;
     this.toh = toh;
+    workingTOH = new TowerOfHanoi (toh.getNumDiscs ());
   }
     
   public static int getDisplayRefreshRate ()
@@ -100,7 +101,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         }
       };
     ui.applicationUpdateTimer = new Timer (ui.updateIntervalMs,
-                                                    updateTimerListener);
+                                           updateTimerListener);
     ui.applicationUpdateTimer.setLogTimers (false);
     ui.applicationUpdateTimer.setCoalesce (true);
   }
@@ -116,10 +117,10 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   protected Graphics2D graphics = null;
   private boolean useHardwareAcceleratedImages = false;
   private TowerOfHanoi toh;
+  private TowerOfHanoi workingTOH;
 
   private void updateApplication ()
   {
-    decideAndDo ();
     do
     {
       do
@@ -179,12 +180,21 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   {
   }
   
-  public void decideAndDo ()
-  {
-  }
-  
   public void drawApplication ()
   {
+    java.util.Queue<Move> moves = toh.getMoves ();
+    if (!moves.isEmpty ())
+    {
+      Move move = moves.remove ();
+      try
+      {
+        workingTOH.move (move.from, move.to);
+        drawString (workingTOH.toString (), 100, 100);
+      }
+      catch (IllegalTowerOfHanoiMoveException e)
+      {
+      }
+    }
   }
   
   private void updateScreen ()
