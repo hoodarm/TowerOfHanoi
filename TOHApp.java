@@ -29,7 +29,7 @@ public class TOHApp
     }
     
     System.out.println (toh);
-    ui = new TOHUserInterface ();
+    ui = new TOHUserInterface (toh);
     ui.start ();
   }
 

@@ -7,10 +7,11 @@ import java.awt.font.*;
 
 public class TOHUserInterface extends JFrame implements KeyListener, MouseListener
 {
-  public TOHUserInterface ()
+  public TOHUserInterface (TowerOfHanoi toh)
   {
     super (TOHUserInterface.getDefaultGraphicsConf ());
     ui = this;
+    this.toh = toh;
   }
     
   public static int getDisplayRefreshRate ()
@@ -114,6 +115,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   public final static int updateIntervalMs = 500;
   protected Graphics2D graphics = null;
   private boolean useHardwareAcceleratedImages = false;
+  private TowerOfHanoi toh;
 
   private void updateApplication ()
   {
