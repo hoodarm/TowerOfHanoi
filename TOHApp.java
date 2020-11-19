@@ -1,20 +1,37 @@
 public class TOHApp
 {
-  public static void solve (TowerOfHanoi toh)
+  static void move (TowerOfHanoi toh, int numDiscs, Peg from, Peg to)
+    throws IllegalTowerOfHanoiMoveException
   {
-    
-  }
+    Peg intermediate;
+    if (from != Peg.A && to != Peg.A)
+      intermediate = Peg.A;
+    else if (from != Peg.B && to != Peg.B)
+      intermediate = Peg.B;
+    else
+      intermediate = Peg.C;
 
+    // code to be written to replace this feeble attempt
+    toh.move (from, intermediate);
+  }
+  
   public static void main (String[] args) 
   {
-    final int NUM_DISCS = 5;
-    TowerOfHanoi toh = new TowerOfHanoi (NUM_DISCS);
-    System.out.println (toh);
+    TowerOfHanoi toh = new TowerOfHanoi (5);
     
-    solve (toh);
+    try
+    {
+      move (toh, toh.getNumDiscs (), Peg.A, Peg.C);
+    }
+    catch (IllegalTowerOfHanoiMoveException e)
+    {
+      System.out.println ("illegal move: " + e);
+    }
+    
+    System.out.println (toh);
     ui = new TOHUserInterface ();
     ui.start ();
   }
 
-  public static TOHUserInterface ui;
+  private static TOHUserInterface ui;
 }
