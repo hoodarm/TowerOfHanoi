@@ -113,19 +113,12 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
 
   private void updateApplication ()
   {
-    do
-    {
-      do
-      {
-        graphics = (Graphics2D) bufferStrategy.getDrawGraphics ();
-        drawBackground ();
-        drawApplication ();
-        graphics.dispose ();
-        graphics = null;
-      } while (bufferStrategy.contentsRestored ());
-      
-      updateScreen ();
-    } while (bufferStrategy.contentsLost ());
+    graphics = (Graphics2D) bufferStrategy.getDrawGraphics ();
+    drawBackground ();
+    drawApplication ();
+    graphics.dispose ();
+    graphics = null;
+    bufferStrategy.show();
   }
     
   private void drawBackground ()
@@ -185,12 +178,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     }
   }
   
-  private void updateScreen ()
-  {
-    bufferStrategy.show();
-    Toolkit.getDefaultToolkit().sync();	
-  }
-
   public void keyTyped (KeyEvent e)
   {
     if (e.getKeyChar () == 'q')
