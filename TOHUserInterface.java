@@ -57,10 +57,12 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
       {
         public void windowOpened(WindowEvent e)
         {
-          ui.initializeApplication ();
           ui.applicationUpdateTimer.start ();
         } 
-        public void windowClosing(WindowEvent e) {}
+        public void windowClosing(WindowEvent e)
+        {
+          System.exit (0);          
+        }
         public void windowClosed(WindowEvent e) {}
         public void windowIconified(WindowEvent e) {}
         public void windowDeiconified(WindowEvent e) {}
@@ -75,16 +77,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     ui.canvas.createBufferStrategy (3);
     ui.bufferStrategy = ui.canvas.getBufferStrategy ();
     
-    // exit if window closed
-    ui.addWindowListener(new WindowAdapter()
-      {
-        public void windowClosing(WindowEvent e)
-        {
-          System.exit (0);
-        }
-      }
-      );
-
     // get ready for key and mouse input and make window visible
     canvas.setFocusable (true);
     canvas.addKeyListener (ui);
@@ -113,7 +105,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   private static Timer applicationUpdateTimer;
   private static TOHUserInterface ui;
   
-  public final static int updateIntervalMs = 500;
+  public final static int updateIntervalMs = 1000;
   protected Graphics2D graphics = null;
   private boolean useHardwareAcceleratedImages = false;
   private TowerOfHanoi toh;
@@ -176,12 +168,9 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     drawString (str, x, y, 16);
   }
 
-  public void initializeApplication ()
-  {
-  }
-  
   public void drawApplication ()
   {
+    drawString (workingTOH.toString (), 100, 100);
     java.util.Queue<Move> moves = toh.getMoves ();
     if (!moves.isEmpty ())
     {
@@ -189,7 +178,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
       try
       {
         workingTOH.move (move.from, move.to);
-        drawString (workingTOH.toString (), 100, 100);
       }
       catch (IllegalTowerOfHanoiMoveException e)
       {
