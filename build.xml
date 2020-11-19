@@ -1,0 +1,18 @@
+<project name="tower-of-hanoi" default="jar" basedir=".">
+  <property name="main-class" value="TOHApp"/>
+  <property name="build-dir" value="build"/>
+  <property name="class-dir" value="${build-dir}/class"/>
+  <property name="jar-dir" value="${build-dir}/jar"/>
+  <target name="compile">
+    <mkdir dir="${class-dir}"/>
+    <javac includeantruntime="false" srcdir="." destdir="${class-dir}"/>
+  </target>
+  <target name="jar" depends="compile">
+    <mkdir dir="${jar-dir}"/>
+    <jar destfile="${jar-dir}/${main-class}.jar" basedir="${class-dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${main-class}"/>
+      </manifest>
+    </jar>
+  </target>
+</project>
