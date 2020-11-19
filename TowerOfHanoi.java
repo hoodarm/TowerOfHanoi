@@ -28,8 +28,13 @@ public class TowerOfHanoi
       
   }
   
-  public void move (Peg from, Peg to)
+  public void move (Peg from, Peg to) throws IllegalTowerOfHanoiMoveException
   {
+    if (towers.get (from).empty () ||
+        !towers.get (to).empty () && towers.get (from).peek () > towers.get (to).peek ())
+      throw new IllegalTowerOfHanoiMoveException ("illegal move");
+    
+    towers.get (to).push (towers.get (from).pop ());
     moves.add (new Move (from, to));
   }
     
@@ -51,4 +56,12 @@ class Move
   }
 
   Peg from, to;
+}
+
+class IllegalTowerOfHanoiMoveException extends Exception
+{
+  IllegalTowerOfHanoiMoveException (String s)
+  {
+    super (s);
+  }
 }
