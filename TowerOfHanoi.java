@@ -33,6 +33,11 @@ public class TowerOfHanoi
     return numDiscs;
   }
   
+  public Integer[] getDiscs (Peg peg)
+  {
+    return towers.get (peg).toArray (new Integer [0]);
+  }
+  
   public boolean isEmpty (Peg peg)
   {
     return towers.get (peg).empty ();
