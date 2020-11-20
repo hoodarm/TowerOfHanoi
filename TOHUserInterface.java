@@ -45,13 +45,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     // basic elements and settings
     ui.setIgnoreRepaint (true);
     ui.setResizable (false);
-    
-    ui.canvas = new Canvas ();
-    canvas.setIgnoreRepaint (true);
-    Container content = ui.getContentPane ();
-    ui.canvas.setPreferredSize (new Dimension (XSIZE, YSIZE));
-    content.add (canvas);
-    ui.pack ();
+    ui.setSize (XSIZE, YSIZE);
     ui.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     ui.addWindowListener (new WindowAdapter ()
       {
@@ -73,15 +67,14 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         public void windowLostFocus(WindowEvent e) {}
       });
         
-    ui.validate ();
-    ui.canvas.createBufferStrategy (3);
-    ui.bufferStrategy = ui.canvas.getBufferStrategy ();
-    
+    // add drawing panel
+    JPanel panel = new DrawPanel ();
     // get ready for key and mouse input and make window visible
-    canvas.setFocusable (true);
-    canvas.addKeyListener (ui);
-    canvas.requestFocus ();
-    canvas.addMouseListener (ui);
+    panel.setFocusable (true);
+    panel.addKeyListener (ui);
+    panel.requestFocus ();
+    panel.addMouseListener (ui);
+    ui.add (panel);
     ui.setVisible (true);
 
     // game update timer
@@ -100,36 +93,21 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     
   public static final int XSIZE = 1024;
   public static final int YSIZE = 768;
-  public static Canvas canvas;
   public static BufferStrategy bufferStrategy;
   private static Timer applicationUpdateTimer;
-  private static TOHUserInterface ui;
+  public static TOHUserInterface ui;
   
-  public final static int updateIntervalMs = 1000;
-  protected Graphics2D graphics = null;
+  public final static int updateIntervalMs = 5000;
   private boolean useHardwareAcceleratedImages = false;
   private TowerOfHanoi toh;
   private TowerOfHanoi workingTOH;
 
   private void updateApplication ()
   {
-    graphics = (Graphics2D) bufferStrategy.getDrawGraphics ();
-    drawBackground ();
-    drawApplication ();
-    graphics.dispose ();
-    graphics = null;
-    bufferStrategy.show();
   }
     
-  private void drawBackground ()
-  {
-    assert graphics != null;
-    graphics.setColor (Color.black);
-    graphics.fillRect (0, 0, XSIZE - 1, YSIZE - 1);
-    graphics.setColor (Color.green);
-  }
-
-  public void drawString (String str,
+  public void drawString (Graphics2D graphics,
+                          String str,
                           int x,
                           int y,
                           int fontSize,
@@ -144,26 +122,32 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     graphics.drawString (str, x, y);
   }
 
-  public void drawString (String str,
+  public void drawString (Graphics2D graphics,
+                          String str,
                           int x,
                           int y,
                           int fontSize)
   {
     assert graphics != null;
-    drawString (str, x, y, fontSize, true);
+    drawString (graphics, str, x, y, fontSize, true);
   }
     
-  public void drawString (String str,
+  public void drawString (Graphics2D graphics,
+                          String str,
                           int x,
                           int y)
   {
     assert graphics != null;
-    drawString (str, x, y, 16);
+    drawString (graphics, str, x, y, 16);
   }
 
-  public void drawApplication ()
+  public void drawApplication (Graphics2D graphics)
   {
-    drawString (workingTOH.toString (), 100, 100);
+    assert graphics != null;
+    graphics.setColor (Color.black);
+    graphics.fillRect (0, 0, XSIZE - 1, YSIZE - 1);
+    graphics.setColor (Color.green);
+    drawString (graphics, workingTOH.toString (), 100, 100);
     java.util.Queue<Move> moves = toh.getMoves ();
     if (!moves.isEmpty ())
     {
@@ -218,4 +202,13 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   {
   }
 
+}
+
+class DrawPanel extends JPanel
+{
+  protected void paintComponent (Graphics graphics)
+  {
+    assert graphics != null;
+    TOHUserInterface.ui.drawApplication ((Graphics2D) graphics);
+  }
 }
