@@ -15,13 +15,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     workingTOH = new TowerOfHanoi (toh.getNumDiscs ());
   }
     
-  public static int getDisplayRefreshRate ()
-  {
-    return (GraphicsEnvironment.getLocalGraphicsEnvironment ()
-            .getDefaultScreenDevice ().getDisplayMode ()
-            .getRefreshRate ());
-  }
-  
   public static GraphicsConfiguration getDefaultGraphicsConf ()
   {
     return (GraphicsEnvironment.getLocalGraphicsEnvironment ()
@@ -93,7 +86,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     
   public static final int XSIZE = 1024;
   public static final int YSIZE = 768;
-  public static BufferStrategy bufferStrategy;
   private static Timer applicationUpdateTimer;
   public static TOHUserInterface ui;
   
