@@ -68,15 +68,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     ui.applicationUpdateTimer.setLogTimers (false);
   }
     
-  public static final int XSIZE = 1024;
-  public static final int YSIZE = 768;
-  private static Timer applicationUpdateTimer;
-  public static TOHUserInterface ui;
-  
-  public final static int updateIntervalMs = 1000;
-  private TowerOfHanoi toh;
-  private TowerOfHanoi workingTOH;
-
   private void updateApplication ()
   {
     java.util.Queue<Move> moves = toh.getMoves ();
@@ -93,6 +84,16 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     }
   }
     
+  public void drawApplication (Graphics2D graphics)
+  {
+    assert graphics != null;
+
+    graphics.setColor (Color.black);
+    graphics.fillRect (0, 0, getWidth () - 1, getHeight () - 1);
+    graphics.setColor (Color.green);
+    drawString (graphics, workingTOH.toString (), 100, 100);
+  }
+  
   public void drawString (Graphics2D graphics,
                           String str,
                           int x,
@@ -128,15 +129,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     drawString (graphics, str, x, y, 16);
   }
 
-  public void drawApplication (Graphics2D graphics)
-  {
-    assert graphics != null;
-    graphics.setColor (Color.black);
-    graphics.fillRect (0, 0, getWidth () - 1, getHeight () - 1);
-    graphics.setColor (Color.green);
-    drawString (graphics, workingTOH.toString (), 100, 100);
-  }
-  
   public void keyTyped (KeyEvent e)
   {
     if (e.getKeyChar () == 'q')
@@ -176,6 +168,16 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   public void mouseReleased (MouseEvent e)
   {
   }
+
+  public static final int XSIZE = 1024;
+  public static final int YSIZE = 768;
+  private static Timer applicationUpdateTimer;
+  public static TOHUserInterface ui;
+  
+  public final static int updateIntervalMs = 1000;
+  public final static int NUM_PEGS = Peg.values ().length;
+  private TowerOfHanoi toh;
+  private TowerOfHanoi workingTOH;
 
 }
 
