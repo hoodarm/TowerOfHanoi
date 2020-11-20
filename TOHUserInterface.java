@@ -9,18 +9,11 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
 {
   public TOHUserInterface (TowerOfHanoi toh)
   {
-    super (TOHUserInterface.getDefaultGraphicsConf ());
     ui = this;
     this.toh = toh;
     workingTOH = new TowerOfHanoi (toh.getNumDiscs ());
   }
     
-  public static GraphicsConfiguration getDefaultGraphicsConf ()
-  {
-    return (GraphicsEnvironment.getLocalGraphicsEnvironment ()
-            .getDefaultScreenDevice ().getDefaultConfiguration ());
-  }
-
   public static void start ()
   {
     // schedule a job for the event-dispatching thread: creating and
