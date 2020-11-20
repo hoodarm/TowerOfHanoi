@@ -29,8 +29,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   private static void initializeGUIAndTimer ()
   {
     // basic elements and settings
-    ui.setIgnoreRepaint (true);
-    ui.setResizable (false);
     ui.setSize (XSIZE, YSIZE);
     ui.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     ui.addWindowListener (new WindowAdapter ()
@@ -69,6 +67,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         public void actionPerformed (ActionEvent e)
         {
           ui.updateApplication ();
+          ui.repaint ();
         }
       };
     ui.applicationUpdateTimer = new Timer (ui.updateIntervalMs,
@@ -82,13 +81,24 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   private static Timer applicationUpdateTimer;
   public static TOHUserInterface ui;
   
-  public final static int updateIntervalMs = 5000;
-  private boolean useHardwareAcceleratedImages = false;
+  public final static int updateIntervalMs = 1000;
   private TowerOfHanoi toh;
   private TowerOfHanoi workingTOH;
 
   private void updateApplication ()
   {
+    java.util.Queue<Move> moves = toh.getMoves ();
+    if (!moves.isEmpty ())
+    {
+      Move move = moves.remove ();
+      try
+      {
+        workingTOH.move (move.from, move.to);
+      }
+      catch (IllegalTowerOfHanoiMoveException e)
+      {
+      }
+    }
   }
     
   public void drawString (Graphics2D graphics,
@@ -133,18 +143,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     graphics.fillRect (0, 0, XSIZE - 1, YSIZE - 1);
     graphics.setColor (Color.green);
     drawString (graphics, workingTOH.toString (), 100, 100);
-    java.util.Queue<Move> moves = toh.getMoves ();
-    if (!moves.isEmpty ())
-    {
-      Move move = moves.remove ();
-      try
-      {
-        workingTOH.move (move.from, move.to);
-      }
-      catch (IllegalTowerOfHanoiMoveException e)
-      {
-      }
-    }
   }
   
   public void keyTyped (KeyEvent e)
