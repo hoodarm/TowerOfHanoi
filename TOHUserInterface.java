@@ -33,24 +33,26 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     ui.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     ui.addWindowListener (new WindowAdapter ()
       {
-        public void windowOpened(WindowEvent e)
+        @Override
+        public void windowOpened (WindowEvent e)
         {
           ui.applicationUpdateTimer.start ();
         } 
-        public void windowClosing(WindowEvent e)
+        @Override
+        public void windowClosing (WindowEvent e)
         {
           System.exit (0);          
         }
-        public void windowClosed(WindowEvent e) {}
-        public void windowIconified(WindowEvent e) {}
-        public void windowDeiconified(WindowEvent e) {}
-        public void windowActivated(WindowEvent e) {}
-        public void windowDeactivated(WindowEvent e) {}
-        public void windowStateChanged(WindowEvent e) {}
-        public void windowGainedFocus(WindowEvent e) {}
-        public void windowLostFocus(WindowEvent e) {}
       });
         
+    ui.addComponentListener (new ComponentAdapter()
+      {
+        public void componentResized (ComponentEvent componentEvent)
+        {
+          ui.repaint ();
+        }
+      });
+    
     // add drawing panel
     JPanel panel = new DrawPanel ();
     // get ready for key and mouse input and make window visible
@@ -73,7 +75,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     ui.applicationUpdateTimer = new Timer (ui.updateIntervalMs,
                                            updateTimerListener);
     ui.applicationUpdateTimer.setLogTimers (false);
-    ui.applicationUpdateTimer.setCoalesce (true);
   }
     
   public static final int XSIZE = 1024;
@@ -140,7 +141,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   {
     assert graphics != null;
     graphics.setColor (Color.black);
-    graphics.fillRect (0, 0, XSIZE - 1, YSIZE - 1);
+    graphics.fillRect (0, 0, getWidth () - 1, getHeight () - 1);
     graphics.setColor (Color.green);
     drawString (graphics, workingTOH.toString (), 100, 100);
   }
