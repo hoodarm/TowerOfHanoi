@@ -45,14 +45,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         }
       });
         
-    ui.addComponentListener (new ComponentAdapter()
-      {
-        public void componentResized (ComponentEvent componentEvent)
-        {
-          ui.repaint ();
-        }
-      });
-    
     // add drawing panel
     JPanel panel = new DrawPanel ();
     // get ready for key and mouse input and make window visible
