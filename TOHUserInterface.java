@@ -87,11 +87,34 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   public void drawApplication (Graphics2D graphics)
   {
     assert graphics != null;
-
+    final int width = getWidth (), height = getHeight ();
     graphics.setColor (Color.black);
-    graphics.fillRect (0, 0, getWidth () - 1, getHeight () - 1);
+    graphics.fillRect (0, 0, width - 1,  height - 1);
     graphics.setColor (Color.green);
-    drawString (graphics, workingTOH.toString (), 100, 100);
+
+    // graphical element scaling to window dimensions
+    int pegLabelY = 11 * height / 12;
+    int pegBaseY = 5 * height / 6;
+    int pegHeight = 2 * height / 3;
+    int pegTopY = pegBaseY - pegHeight;
+    int pegWidth = width / 36;
+    int pegIndex = 1;
+    int discHeight = height / (workingTOH.getNumDiscs () * 4);
+    
+    for (Peg peg : Peg.values ())
+    {
+      final int x = pegIndex * width / (NUM_PEGS + 1);
+      drawString (graphics, peg.toString (), x, pegLabelY); // peg label
+      graphics.drawRect (x - pegWidth / 2, pegTopY, pegWidth, pegHeight); // peg
+
+      // discs
+      Integer[] discs = workingTOH.getDiscs (peg);
+      int numDiscs = discs.length;
+      for (int i = 0; i < numDiscs; i++)
+        drawString (graphics, String.valueOf (discs [i]), x, pegBaseY - i * discHeight);
+
+      pegIndex++;
+    }
   }
   
   public void drawString (Graphics2D graphics,
