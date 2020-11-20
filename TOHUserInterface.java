@@ -1,7 +1,6 @@
 import javax.swing.*;        
 import java.awt.*;           // For Graphics, etc.
 import java.awt.geom.*;      // For Ellipse2D, etc.
-import java.awt.image.*;
 import java.awt.event.*;
 import java.awt.font.*;
 
