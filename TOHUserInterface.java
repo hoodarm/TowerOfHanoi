@@ -174,6 +174,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
     drawString (graphics, str, x, y, 16);
   }
 
+  @Override
   public void keyTyped (KeyEvent e)
   {
     char keyChar = e.getKeyChar ();
@@ -193,16 +194,13 @@ public class TOHUserInterface extends JFrame implements KeyListener
     }
   }
 
+  // needed for completeness to implement abstract base class
+  @Override
   public void keyPressed (KeyEvent e)
   {
-    if (e.getKeyCode () == KeyEvent.VK_ENTER)
-      enterPressed ();
   }
   
-  public void enterPressed ()
-  {
-  }
-  
+  @Override
   public void keyReleased (KeyEvent e)
   {
   }
@@ -221,6 +219,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
 
 class DrawPanel extends JPanel
 {
+  @Override
   protected void paintComponent (Graphics graphics)
   {
     assert graphics != null;
