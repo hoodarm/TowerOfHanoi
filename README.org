@@ -1,0 +1,49 @@
+* Tower of Hanoi -application for learning to program solution
+** The purpose of this repository
+   This repository contains model, view and controller classes for
+   solving Tower of Hanoi.
+
+** Installation in IDEA
+   To install the application in IDEA, do the following:
+   1. Clone the repository.
+   2. Right click on class =TOHApp=.
+   3. Select =Run TOHApp.main()=
+   You are now able to make changes to the project and run it again.
+
+** Alternative installation from command line
+   1. Clone repository.
+   2. Inside repo, run =ant= to build the app.
+   3. Run app with
+      #+begin_src sh
+        java -jar build/jar/TOHApp.jar
+      #+end_src
+   
+** Solving the tower of Hanoi
+   Class =TOHApp= contains method
+   #+begin_src java :exports code
+     static void move (TowerOfHanoi toh, int numDiscs, Peg from, Peg to)
+   #+end_src
+   which you need to modify to solve the problems.
+
+** GUI key bindings
+   | key | action              |
+   |-----+---------------------|
+   | ~+~ | speed up animation  |
+   | ~-~ | slow down animation |
+   | ~q~ | quit                |
+
+** License
+   Copyright (C) 2020 Jarmo Hurri
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.
