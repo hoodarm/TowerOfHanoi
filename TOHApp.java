@@ -22,6 +22,7 @@ public class TOHApp
     Rod intermediate = Rod.third (from, to); // find intermediate rod
     toh.move (from, intermediate); // move top disc to intermediate
     toh.move (from, to); // move next disc to target
+    toh.move (from, to); // move next disc to target
   }
   
   public static void main (String[] args) 
