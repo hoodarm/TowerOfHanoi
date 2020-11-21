@@ -19,17 +19,19 @@ public class TOHApp
     throws IllegalTowerOfHanoiMoveException
   {
     // code to be written to replace this feeble attempt
-    Rod intermediate = Rod.third (from, to);
-    toh.move (from, intermediate);
-    toh.move (from, to);
+    Rod intermediate = Rod.third (from, to); // find intermediate rod
+    toh.move (from, intermediate); // move top disc to intermediate
+    toh.move (from, to); // move next disc to target
   }
   
   public static void main (String[] args) 
   {
+    // construct a new tower of Hanoi with 5 discs
     TowerOfHanoi toh = new TowerOfHanoi (5);
     
     try
     {
+      // task is to move all discs from rod A to rod C
       move (toh, toh.getNumDiscs (), Rod.A, Rod.C);
     }
     catch (IllegalTowerOfHanoiMoveException e)

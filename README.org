@@ -18,19 +18,38 @@
         java -jar build/jar/TOHApp.jar
       #+end_src
    
-** Solving the tower of Hanoi
-   Class =TOHApp= contains method
-   #+begin_src java :exports code
-     static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
-   #+end_src
-   which you need to modify to solve the problems.
-
 ** GUI key bindings
    | key | action              |
    |-----+---------------------|
    | ~+~ | speed up animation  |
    | ~-~ | slow down animation |
    | ~q~ | quit                |
+
+** Solving the tower of Hanoi
+   Class =TOHApp= contains method
+   #+begin_src java :exports code
+     static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
+   #+end_src
+   which you need to modify to solve the problems. The =main()= of
+   this class method =move()= with correct parameters for solving the
+   problem, that is, moving all discs from rod A to rod C.
+
+   The version of =move()= in this repository is a feeble attempt to
+   solve this problem, and you need to replace it with your own
+   version. Still, the feeble version demonstrates all the external
+   methods you need to use:
+   - =enum Rod= contains static method
+     #+begin_src java :exports code
+       Rod third (Rod one, Rod another)
+     #+end_src
+     which returns the third rod given two rods.
+   - =class TowerOfHanoi= contains method
+     #+begin_src java :exports code
+       move (Rod from, Rod to)
+     #+end_src
+     which moves top disc of rod =from= to rod =to=. This may throw an
+     exception if the move breaks the rules of Tower of Hanoi, but
+     this exception is caught by the program.
 
 ** License
    Copyright (C) 2020 Jarmo Hurri

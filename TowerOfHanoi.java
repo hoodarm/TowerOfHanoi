@@ -90,12 +90,12 @@ enum Rod
 {
   A, B, C;
 
-  static Rod third (Rod first, Rod second)
+  static Rod third (Rod one, Rod another)
   {
     Rod intermediate;
-    if (first != Rod.A && second != Rod.A)
+    if (one != Rod.A && another != Rod.A)
       return Rod.A;
-    else if (first != Rod.B && second != Rod.B)
+    else if (one != Rod.B && another != Rod.B)
       return Rod.B;
     else
        return Rod.C;
