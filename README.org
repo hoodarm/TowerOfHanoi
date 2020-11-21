@@ -12,11 +12,7 @@
 
 ** Alternative installation from command line
    1. Clone repository.
-   2. Inside repo, run =ant= to build the app.
-   3. Run app with
-      #+begin_src sh
-        java -jar build/jar/TOHApp.jar
-      #+end_src
+   2. Inside repo, run =ant= to build and run the app.
    
 ** GUI key bindings
    | key | action              |
