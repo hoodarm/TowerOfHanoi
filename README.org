@@ -21,7 +21,7 @@
 ** Solving the tower of Hanoi
    Class =TOHApp= contains method
    #+begin_src java :exports code
-     static void move (TowerOfHanoi toh, int numDiscs, Peg from, Peg to)
+     static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
    #+end_src
    which you need to modify to solve the problems.
 

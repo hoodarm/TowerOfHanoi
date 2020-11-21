@@ -15,7 +15,7 @@
 
 public class Move
 {
-  public Move (Peg from, Peg to)
+  public Move (Rod from, Rod to)
   {
     this.from = from;
     this.to = to;
@@ -26,5 +26,5 @@ public class Move
     return from + " -> " + to;
   }
   
-  public Peg from, to;
+  public Rod from, to;
 }

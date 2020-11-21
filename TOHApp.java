@@ -15,16 +15,16 @@
 
 public class TOHApp
 {
-  static void move (TowerOfHanoi toh, int numDiscs, Peg from, Peg to)
+  static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
     throws IllegalTowerOfHanoiMoveException
   {
-    Peg intermediate;
-    if (from != Peg.A && to != Peg.A)
-      intermediate = Peg.A;
-    else if (from != Peg.B && to != Peg.B)
-      intermediate = Peg.B;
+    Rod intermediate;
+    if (from != Rod.A && to != Rod.A)
+      intermediate = Rod.A;
+    else if (from != Rod.B && to != Rod.B)
+      intermediate = Rod.B;
     else
-      intermediate = Peg.C;
+      intermediate = Rod.C;
 
     // code to be written to replace this feeble attempt
     toh.move (from, intermediate);
@@ -37,7 +37,7 @@ public class TOHApp
     
     try
     {
-      move (toh, toh.getNumDiscs (), Peg.A, Peg.C);
+      move (toh, toh.getNumDiscs (), Rod.A, Rod.C);
     }
     catch (IllegalTowerOfHanoiMoveException e)
     {

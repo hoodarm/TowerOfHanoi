@@ -105,28 +105,28 @@ public class TOHUserInterface extends JFrame implements KeyListener
     graphics.fillRect (0, 0, width - 1,  height - 1);
 
     // graphical element scaling to window dimensions
-    int pegLabelY = 11 * height / 12;
-    int pegBaseY = 5 * height / 6;
-    int pegHeight = 2 * height / 3;
-    int pegTopY = pegBaseY - pegHeight;
-    int pegWidth = width / 36;
-    int pegIndex = 1;
+    int rodLabelY = 11 * height / 12;
+    int rodBaseY = 5 * height / 6;
+    int rodHeight = 2 * height / 3;
+    int rodTopY = rodBaseY - rodHeight;
+    int rodWidth = width / 36;
+    int rodIndex = 1;
     int numDiscs = workingTOH.getNumDiscs ();
-    int discHeight = pegHeight / (numDiscs + 1);
+    int discHeight = rodHeight / (numDiscs + 1);
     int discMaxWidth = width / (NUM_PEGS + 3);
-    int discMinWidth = pegWidth * 2;
+    int discMinWidth = rodWidth * 2;
 
-    for (Peg peg : Peg.values ())
+    for (Rod rod : Rod.values ())
     {
       graphics.setColor (Color.green);
-      final int x = pegIndex * width / (NUM_PEGS + 1);
-      drawString (graphics, peg.toString (), x, pegLabelY); // peg label
-      graphics.drawRect (x - pegWidth / 2, pegTopY, pegWidth, pegHeight); // peg
+      final int x = rodIndex * width / (NUM_PEGS + 1);
+      drawString (graphics, rod.toString (), x, rodLabelY); // rod label
+      graphics.drawRect (x - rodWidth / 2, rodTopY, rodWidth, rodHeight); // rod
 
       // discs
-      Integer[] discs = workingTOH.getDiscs (peg);
-      int numPegDiscs = discs.length;
-      for (int i = 0; i < numPegDiscs; i++)
+      Integer[] discs = workingTOH.getDiscs (rod);
+      int numRodDiscs = discs.length;
+      for (int i = 0; i < numRodDiscs; i++)
       {
         graphics.setColor (Color.green);
         int disc = discs [i];
@@ -134,13 +134,13 @@ public class TOHUserInterface extends JFrame implements KeyListener
           ((discMaxWidth - discMinWidth) * disc + discMinWidth * numDiscs - discMaxWidth)
           / (numDiscs - 1);
         int rectX = x - discWidth / 2,
-          rectY = pegBaseY - (i + 1) * discHeight;
+          rectY = rodBaseY - (i + 1) * discHeight;
         graphics.fillRect (rectX, rectY, discWidth, discHeight);
         graphics.setColor (Color.black);
         graphics.drawRect (rectX, rectY, discWidth, discHeight);
       }
 
-      pegIndex++;
+      rodIndex++;
     }
   }
   
@@ -226,7 +226,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
   public static TOHUserInterface ui;
   
   public final static int updateIntervalMs = 1000;
-  public final static int NUM_PEGS = Peg.values ().length;
+  public final static int NUM_PEGS = Rod.values ().length;
   private TowerOfHanoi toh;
   private TowerOfHanoi workingTOH;
 
