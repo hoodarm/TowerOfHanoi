@@ -18,15 +18,8 @@ public class TOHApp
   static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
     throws IllegalTowerOfHanoiMoveException
   {
-    Rod intermediate;
-    if (from != Rod.A && to != Rod.A)
-      intermediate = Rod.A;
-    else if (from != Rod.B && to != Rod.B)
-      intermediate = Rod.B;
-    else
-      intermediate = Rod.C;
-
     // code to be written to replace this feeble attempt
+    Rod intermediate = Rod.third (from, to);
     toh.move (from, intermediate);
     toh.move (from, to);
   }

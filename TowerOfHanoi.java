@@ -89,6 +89,17 @@ public class TowerOfHanoi
 enum Rod
 {
   A, B, C;
+
+  static Rod third (Rod first, Rod second)
+  {
+    Rod intermediate;
+    if (first != Rod.A && second != Rod.A)
+      return Rod.A;
+    else if (first != Rod.B && second != Rod.B)
+      return Rod.B;
+    else
+       return Rod.C;
+  }
 }
 
 class IllegalTowerOfHanoiMoveException extends Exception
