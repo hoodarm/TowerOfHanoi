@@ -90,7 +90,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     final int width = getWidth (), height = getHeight ();
     graphics.setColor (Color.black);
     graphics.fillRect (0, 0, width - 1,  height - 1);
-    graphics.setColor (Color.green);
 
     // graphical element scaling to window dimensions
     int pegLabelY = 11 * height / 12;
@@ -99,19 +98,34 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     int pegTopY = pegBaseY - pegHeight;
     int pegWidth = width / 36;
     int pegIndex = 1;
-    int discHeight = height / (workingTOH.getNumDiscs () * 4);
-    
+    int numDiscs = workingTOH.getNumDiscs ();
+    int discHeight = pegHeight / (numDiscs + 1);
+    int discMaxWidth = width / (NUM_PEGS + 3);
+    int discMinWidth = discMaxWidth / numDiscs;
+
     for (Peg peg : Peg.values ())
     {
+      graphics.setColor (Color.green);
       final int x = pegIndex * width / (NUM_PEGS + 1);
       drawString (graphics, peg.toString (), x, pegLabelY); // peg label
       graphics.drawRect (x - pegWidth / 2, pegTopY, pegWidth, pegHeight); // peg
 
       // discs
       Integer[] discs = workingTOH.getDiscs (peg);
-      int numDiscs = discs.length;
-      for (int i = 0; i < numDiscs; i++)
-        drawString (graphics, String.valueOf (discs [i]), x, pegBaseY - i * discHeight);
+      int numPegDiscs = discs.length;
+      for (int i = 0; i < numPegDiscs; i++)
+      {
+        graphics.setColor (Color.green);
+        int disc = discs [i];
+        int discWidth =
+          ((discMaxWidth - discMinWidth) * disc + discMinWidth * numDiscs - discMaxWidth)
+          / (numDiscs - 1);
+        int rectX = x - discWidth / 2,
+          rectY = pegBaseY - (i + 1) * discHeight;
+        graphics.fillRect (rectX, rectY, discWidth, discHeight);
+        graphics.setColor (Color.black);
+        graphics.drawRect (rectX, rectY, discWidth, discHeight);
+      }
 
       pegIndex++;
     }
