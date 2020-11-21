@@ -10,9 +10,9 @@
    3. Select =Run TOHApp.main()=
    You are now able to make changes to the project and run it again.
 
-** Alternative installation from command line
+** Alternative installation
    1. Clone repository.
-   2. Inside repo, run =ant= to build and run the app.
+   2. Run =ant= default target (builds and runs the application).
    
 ** GUI key bindings
    | key | action              |
