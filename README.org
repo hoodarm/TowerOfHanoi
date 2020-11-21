@@ -21,7 +21,7 @@
    | ~-~ | slow down animation |
    | ~q~ | quit                |
 
-** Solving the tower of Hanoi
+** Programming your solution
    Class =TOHApp= contains method
    #+begin_src java :exports code
      static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
