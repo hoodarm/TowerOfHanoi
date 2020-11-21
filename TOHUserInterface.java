@@ -1,6 +1,6 @@
 import javax.swing.*;        
-import java.awt.*;           // For Graphics, etc.
-import java.awt.geom.*;      // For Ellipse2D, etc.
+import java.awt.*;
+import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.font.*;
 
@@ -10,7 +10,9 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   {
     ui = this;
     this.toh = toh;
-    workingTOH = new TowerOfHanoi (toh.getNumDiscs ());
+
+    // working TOH to replicate moves
+    workingTOH = new TowerOfHanoi (toh.getNumDiscs ()); 
   }
     
   public static void start ()
@@ -27,7 +29,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   
   private static void initializeGUIAndTimer ()
   {
-    // basic elements and settings
     ui.setSize (XSIZE, YSIZE);
     ui.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     ui.addWindowListener (new WindowAdapter ()
@@ -37,6 +38,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         {
           ui.applicationUpdateTimer.start ();
         } 
+        
         @Override
         public void windowClosing (WindowEvent e)
         {
@@ -44,9 +46,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
         }
       });
         
-    // add drawing panel
     JPanel panel = new DrawPanel ();
-    // get ready for key and mouse input and make window visible
     panel.setFocusable (true);
     panel.addKeyListener (ui);
     panel.requestFocus ();
@@ -54,7 +54,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     ui.add (panel);
     ui.setVisible (true);
 
-    // game update timer
     ActionListener updateTimerListener = new ActionListener ()
       {
         public void actionPerformed (ActionEvent e)
