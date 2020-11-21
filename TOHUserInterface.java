@@ -101,7 +101,7 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     int numDiscs = workingTOH.getNumDiscs ();
     int discHeight = pegHeight / (numDiscs + 1);
     int discMaxWidth = width / (NUM_PEGS + 3);
-    int discMinWidth = discMaxWidth / numDiscs;
+    int discMinWidth = pegWidth * 2;
 
     for (Peg peg : Peg.values ())
     {
