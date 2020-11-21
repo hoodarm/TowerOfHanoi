@@ -4,7 +4,7 @@ import java.awt.geom.*;
 import java.awt.event.*;
 import java.awt.font.*;
 
-public class TOHUserInterface extends JFrame implements KeyListener, MouseListener
+public class TOHUserInterface extends JFrame implements KeyListener
 {
   public TOHUserInterface (TowerOfHanoi toh)
   {
@@ -50,7 +50,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     panel.setFocusable (true);
     panel.addKeyListener (ui);
     panel.requestFocus ();
-    panel.addMouseListener (ui);
     ui.add (panel);
     ui.setVisible (true);
 
@@ -205,26 +204,6 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
   }
   
   public void keyReleased (KeyEvent e)
-  {
-  }
-
-  public void mouseClicked (MouseEvent e)
-  {
-  }
-
-  public void mouseEntered (MouseEvent e)
-  {
-  }
-
-  public void mouseExited (MouseEvent e)
-  {
-  }
-
-  public void mousePressed (MouseEvent e)
-  {
-  }
-
-  public void mouseReleased (MouseEvent e)
   {
   }
 
