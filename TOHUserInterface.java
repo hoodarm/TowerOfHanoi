@@ -130,6 +130,16 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
     }
   }
   
+  public void speedup ()
+  {
+    applicationUpdateTimer.setDelay (applicationUpdateTimer.getDelay () / 2);
+  }
+
+  public void slowdown ()
+  {
+    applicationUpdateTimer.setDelay (applicationUpdateTimer.getDelay () * 2);
+  }
+  
   public void drawString (Graphics2D graphics,
                           String str,
                           int x,
@@ -167,8 +177,21 @@ public class TOHUserInterface extends JFrame implements KeyListener, MouseListen
 
   public void keyTyped (KeyEvent e)
   {
-    if (e.getKeyChar () == 'q')
-      System.exit (0);
+    char keyChar = e.getKeyChar ();
+    switch (keyChar)
+    {
+      case 'q':
+        System.exit (0);
+        break;
+      case '+':
+        speedup ();
+        break;
+      case '-':
+        slowdown ();
+        break;
+      default:
+        break;
+    }
   }
 
   public void keyPressed (KeyEvent e)
