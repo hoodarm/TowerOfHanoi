@@ -40,7 +40,7 @@ public class TOHApp
     }
     
     ui = new TOHUserInterface (toh);
-    ui.start ();
+    TOHUserInterface.start ();
   }
 
   private static TOHUserInterface ui;

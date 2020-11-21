@@ -51,7 +51,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
         @Override
         public void windowOpened (WindowEvent e)
         {
-          ui.applicationUpdateTimer.start ();
+          TOHUserInterface.applicationUpdateTimer.start ();
         } 
         
         @Override
@@ -76,9 +76,9 @@ public class TOHUserInterface extends JFrame implements KeyListener
           ui.repaint ();
         }
       };
-    ui.applicationUpdateTimer = new Timer (ui.updateIntervalMs,
-                                           updateTimerListener);
-    ui.applicationUpdateTimer.setLogTimers (false);
+    TOHUserInterface.applicationUpdateTimer =
+      new Timer (TOHUserInterface.updateIntervalMs, updateTimerListener);
+    Timer.setLogTimers (false);
   }
     
   private void updateApplication ()

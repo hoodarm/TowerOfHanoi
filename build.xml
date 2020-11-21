@@ -5,7 +5,10 @@
   <property name="jar-dir" value="${build-dir}/jar"/>
   <target name="compile">
     <mkdir dir="${class-dir}"/>
-    <javac includeantruntime="false" srcdir="." destdir="${class-dir}"/>
+    <javac includeantruntime="false" srcdir="." destdir="${class-dir}">
+      <compilerarg value="-Xlint"/>
+      <compilerarg value="-Xlint:-serial"/>
+    </javac>
   </target>
   <target name="jar" depends="compile">
     <mkdir dir="${jar-dir}"/>
