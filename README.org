@@ -1,4 +1,4 @@
-* Tower of Hanoi -application for learning to program solution
+* Solving Tower of Hanoi
 ** The purpose of this repository
    This repository contains model, view and controller classes for
    solving Tower of Hanoi.
@@ -31,8 +31,8 @@
      static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
    #+end_src
    which you need to modify to solve the problems. The =main()= of
-   this class method =move()= with correct parameters for solving the
-   problem, that is, moving all discs from rod A to rod C.
+   this class calls method =move()= with correct parameters for
+   solving the problem, that is, moving all discs from rod A to rod C.
 
    The version of =move()= in this repository is a feeble attempt to
    solve this problem, and you need to replace it with your own
