@@ -101,7 +101,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
   {
     assert graphics != null;
     final int width = getWidth (), height = getHeight ();
-    graphics.setColor (Color.black);
+    graphics.setColor (Color.white);
     graphics.fillRect (0, 0, width - 1,  height - 1);
 
     // graphical element scaling to window dimensions
@@ -118,7 +118,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
 
     for (Rod rod : Rod.values ())
     {
-      graphics.setColor (Color.green);
+      graphics.setColor (Color.black);
       final int x = rodIndex * width / (NUM_PEGS + 1);
       drawString (graphics, rod.toString (), x, rodLabelY); // rod label
       graphics.drawRect (x - rodWidth / 2, rodTopY, rodWidth, rodHeight); // rod
@@ -128,7 +128,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
       int numRodDiscs = discs.length;
       for (int i = 0; i < numRodDiscs; i++)
       {
-        graphics.setColor (Color.green);
+        graphics.setColor (Color.black);
         int disc = discs [i];
         int discWidth =
           ((discMaxWidth - discMinWidth) * disc + discMinWidth * numDiscs - discMaxWidth)
@@ -136,7 +136,7 @@ public class TOHUserInterface extends JFrame implements KeyListener
         int rectX = x - discWidth / 2,
           rectY = rodBaseY - (i + 1) * discHeight;
         graphics.fillRect (rectX, rectY, discWidth, discHeight);
-        graphics.setColor (Color.black);
+        graphics.setColor (Color.white);
         graphics.drawRect (rectX, rectY, discWidth, discHeight);
       }
 
