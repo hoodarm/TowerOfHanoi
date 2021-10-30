@@ -47,6 +47,6 @@ public class TOHApp
       System.out.println ("illegal move: " + e);
     }
     
-    new TOHUserInterface (toh).initializeGUIAndTimer ();
+    new TOHUserInterface (toh);
   }
 }

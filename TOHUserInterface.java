@@ -23,23 +23,20 @@ public class TOHUserInterface extends JFrame implements KeyListener
 {
   public TOHUserInterface (TowerOfHanoi toh)
   {
-    ui = this;
+    super ("Tower of Hanoi solution framework");
     this.toh = toh;
 
     // working TOH to replicate moves
     workingTOH = new TowerOfHanoi (toh.getNumDiscs ()); 
-  }
-    
-  public void initializeGUIAndTimer ()
-  {
-    ui.setSize (XSIZE, YSIZE);
-    ui.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-    ui.addWindowListener (new WindowAdapter ()
+
+    setSize (XSIZE, YSIZE);
+    setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
+    addWindowListener (new WindowAdapter ()
       {
         @Override
         public void windowOpened (WindowEvent e)
         {
-          TOHUserInterface.applicationUpdateTimer.start ();
+          applicationUpdateTimer.start ();
         } 
         
         @Override
@@ -49,23 +46,31 @@ public class TOHUserInterface extends JFrame implements KeyListener
         }
       });
         
-    JPanel panel = new DrawPanel ();
+    JPanel panel = new JPanel ()
+      {
+        @Override
+        protected void paintComponent (Graphics graphics)
+        {
+          assert graphics != null;
+          drawApplication ((Graphics2D) graphics);
+        }
+      };
+
     panel.setFocusable (true);
-    panel.addKeyListener (ui);
+    panel.addKeyListener (this);
     panel.requestFocus ();
-    ui.add (panel);
-    ui.setVisible (true);
+    add (panel);
+    setVisible (true);
 
     ActionListener updateTimerListener = new ActionListener ()
       {
         public void actionPerformed (ActionEvent e)
         {
-          ui.updateApplication ();
-          ui.repaint ();
+          updateApplication ();
+          repaint ();
         }
       };
-    TOHUserInterface.applicationUpdateTimer =
-      new Timer (TOHUserInterface.updateIntervalMs, updateTimerListener);
+    applicationUpdateTimer = new Timer (updateIntervalMs, updateTimerListener);
     Timer.setLogTimers (false);
   }
     
@@ -208,24 +213,13 @@ public class TOHUserInterface extends JFrame implements KeyListener
   {
   }
 
-  public static final int XSIZE = 1024;
-  public static final int YSIZE = 768;
-  private static Timer applicationUpdateTimer;
-  public static TOHUserInterface ui;
+  public final int XSIZE = 1024;
+  public final int YSIZE = 768;
+  private Timer applicationUpdateTimer;
   
-  public final static int updateIntervalMs = 1000;
-  public final static int NUM_PEGS = Rod.values ().length;
+  public final int updateIntervalMs = 1000;
+  public final int NUM_PEGS = Rod.values ().length;
   private TowerOfHanoi toh;
   private TowerOfHanoi workingTOH;
 
-}
-
-class DrawPanel extends JPanel
-{
-  @Override
-  protected void paintComponent (Graphics graphics)
-  {
-    assert graphics != null;
-    TOHUserInterface.ui.drawApplication ((Graphics2D) graphics);
-  }
 }
