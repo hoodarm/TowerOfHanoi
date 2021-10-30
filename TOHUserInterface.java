@@ -62,15 +62,12 @@ public class TOHUserInterface extends JFrame implements KeyListener
     add (panel);
     setVisible (true);
 
-    ActionListener updateTimerListener = new ActionListener ()
-      {
-        public void actionPerformed (ActionEvent e)
-        {
-          updateApplication ();
-          repaint ();
-        }
-      };
-    applicationUpdateTimer = new Timer (updateIntervalMs, updateTimerListener);
+    applicationUpdateTimer = new Timer (updateIntervalMs,
+                                        (ActionEvent e) ->
+                                        {
+                                          updateApplication ();
+                                          repaint ();
+                                        });
     Timer.setLogTimers (false);
   }
     
