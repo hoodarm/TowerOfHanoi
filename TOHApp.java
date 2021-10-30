@@ -13,9 +13,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import javax.swing.SwingUtilities;
+
 public class TOHApp
 {
-  static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
+  public static void main (String[] args)
+  {
+    SwingUtilities.invokeLater (() -> new TOHApp ());
+  }
+  
+  public static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
     throws IllegalTowerOfHanoiMoveException
   {
     // code to be written to replace this feeble attempt
@@ -25,7 +32,7 @@ public class TOHApp
     toh.move (from, to); // move next disc to target
   }
   
-  public static void main (String[] args) 
+  public TOHApp ()
   {
     // construct a new tower of Hanoi with 5 discs
     TowerOfHanoi toh = new TowerOfHanoi (5);
@@ -40,9 +47,6 @@ public class TOHApp
       System.out.println ("illegal move: " + e);
     }
     
-    ui = new TOHUserInterface (toh);
-    TOHUserInterface.start ();
+    new TOHUserInterface (toh).initializeGUIAndTimer ();
   }
-
-  private static TOHUserInterface ui;
 }
