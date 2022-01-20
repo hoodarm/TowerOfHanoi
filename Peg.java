@@ -1,4 +1,4 @@
-enum Rod
+enum Peg
 {
   A, B, C;
 }

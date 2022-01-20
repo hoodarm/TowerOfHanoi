@@ -24,7 +24,7 @@
 ** Programming your solution
    Class =TOHApp= contains method
    #+begin_src java :exports code
-     static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to)
+     static void move (TowerOfHanoi toh, int numDiscs, Peg from, Peg to)
    #+end_src
    which you need to modify to solve the problems. The =main()= of
    this class calls method =move()= with correct parameters for
@@ -32,16 +32,11 @@
 
    The version of =move()= in this repository is a feeble attempt to
    solve this problem, and you need to replace it with your own
-   version. Still, the feeble version demonstrates all the external
+   version. Still, the feeble version demonstrates the only external
    methods you need to use:
-   - =enum Rod= contains static method
-     #+begin_src java :exports code
-       Rod third (Rod one, Rod another)
-     #+end_src
-     which returns the third rod given two rods.
    - =class TowerOfHanoi= contains method
      #+begin_src java :exports code
-       move (Rod from, Rod to)
+       move (Peg from, Peg to)
      #+end_src
      which moves top disc of rod =from= to rod =to=. This may throw an
      exception if the move breaks the rules of Tower of Hanoi, but

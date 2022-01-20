@@ -22,7 +22,7 @@ public class TOHApp
     SwingUtilities.invokeLater (() -> new TOHApp ());
   }
   
-  public static void move (TowerOfHanoi toh, int numDiscs, Rod from, Rod to, Rod intermediate)
+  public static void move (TowerOfHanoi toh, int numDiscs, Peg from, Peg to, Peg intermediate)
     throws IllegalTowerOfHanoiMoveException
   {
     // code to be written to replace this feeble attempt
@@ -38,8 +38,8 @@ public class TOHApp
     
     try
     {
-      // task is to move all discs from rod A to rod C
-      move (toh, toh.getNumDiscs (), Rod.A, Rod.C, Rod.B);
+      // task is to move all discs from peg A to peg C
+      move (toh, toh.getNumDiscs (), Peg.A, Peg.C, Peg.B);
     }
     catch (IllegalTowerOfHanoiMoveException e)
     {

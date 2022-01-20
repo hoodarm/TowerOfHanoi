@@ -23,18 +23,18 @@ public class TowerOfHanoi
 {
   public TowerOfHanoi (int numDiscs)
   {
-    towers = new EnumMap<> (Rod.class);
-    for (Rod rod : Rod.values ())
-      towers.put (rod, new Stack<> ());
+    towers = new EnumMap<> (Peg.class);
+    for (Peg peg : Peg.values ())
+      towers.put (peg, new Stack<> ());
     
     for (int i = numDiscs; i >= 1; i--)
-      towers.get (Rod.A).push (i);
+      towers.get (Peg.A).push (i);
     
     this.numDiscs = numDiscs;
     moves = new LinkedList <> ();
   }
 
-  public void move (Rod from, Rod to) throws IllegalTowerOfHanoiMoveException
+  public void move (Peg from, Peg to) throws IllegalTowerOfHanoiMoveException
   {
     if (isEmpty (from) || !isEmpty (to) && peek (from) > peek (to))
       throw new IllegalTowerOfHanoiMoveException ("illegal move: " + from + " -> " + to);
@@ -48,22 +48,22 @@ public class TowerOfHanoi
     return numDiscs;
   }
   
-  public Integer[] getDiscs (Rod rod)
+  public Integer[] getDiscs (Peg peg)
   {
-    return towers.get (rod).toArray (new Integer [0]);
+    return towers.get (peg).toArray (new Integer [0]);
   }
   
-  public boolean isEmpty (Rod rod)
+  public boolean isEmpty (Peg peg)
   {
-    return towers.get (rod).empty ();
+    return towers.get (peg).empty ();
   }
   
-  public int peek (Rod rod)
+  public int peek (Peg peg)
   {
-    if (isEmpty (rod))
+    if (isEmpty (peg))
       return 0;
     else
-      return (towers.get (rod).peek ());
+      return (towers.get (peg).peek ());
   }
   
   public Queue<Move> getMoves ()
@@ -74,14 +74,14 @@ public class TowerOfHanoi
   public String toString ()
   {
     StringBuffer strBuf = new StringBuffer ();
-    for (Rod rod : Rod.values ())
-      strBuf.append (rod + ": " + towers.get (rod) + " \n");
+    for (Peg peg : Peg.values ())
+      strBuf.append (peg + ": " + towers.get (peg) + " \n");
 
     return strBuf.toString ();
       
   }
   
-  private Map<Rod,Stack<Integer>> towers;
+  private Map<Peg,Stack<Integer>> towers;
   private Queue<Move> moves;
   private int numDiscs;
 }
